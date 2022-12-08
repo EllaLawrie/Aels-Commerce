@@ -1,21 +1,48 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("../public/fonts/Poppins/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Work sans";
+  src: url("../public/fonts/Work_Sans/static/WorkSans-Regular.ttf");
+}
+
+:root {
+  --color-grey: #36454f;
+  --box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Work sans";
+  color: #000;
+  background-color: #efe6d7;
 }
 
-a {
+a,
+input {
+  outline: none;
+  border: none;
   color: inherit;
   text-decoration: none;
 }
 
-* {
+input:focus {
+  outline: none;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   html {
     color-scheme: dark;
   }

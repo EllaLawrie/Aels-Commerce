@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Ginger";
+  src: url("../../public/fonts/ginger-modern-stylish-font/Ginger.ttf");
+}
+
+.header {
+  position: fixed;
+  top: 5px;
+  width: 100%;
+}
+
+.header .container {
+  width: 95%;
+  margin: 0 auto;
+  /* padding: 5px 0; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  border: 1px solid gray;
+}
+
+.header .container span {
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: "Ginger";
+  color: #000;
+}
