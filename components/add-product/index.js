@@ -1,30 +1,32 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
-import { add } from "../../store/slices/productsSlice";
-import styles from "./styles.module.css";
+import { add, toggleAddState } from '../../store/slices/productsSlice'
+import styles from './styles.module.css'
 
-export default function AddProduct(props) {
-  const { showEdit, setShowEdit } = props;
+export default function AddProduct() {
+  const state = useSelector((state) => state.products)
+  const isAddData = useSelector((state) => state.products.isAddData)
+
   const [formData, setFormData] = useState({
-    productName: "",
-    productPrice: "",
-    category: "",
-  });
+    productName: '',
+    productPrice: '',
+    category: '',
+  })
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   function handleFormData(e) {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
     if (
-      formData.productName !== "" &&
-      formData.category !== "" &&
-      formData.productPrice !== ""
+      formData.productName !== '' &&
+      formData.category !== '' &&
+      formData.productPrice !== ''
     ) {
       dispatch(
         add({
@@ -32,50 +34,50 @@ export default function AddProduct(props) {
           category: formData.category,
           productPrice: formData.productPrice,
         })
-      );
-      setShowEdit(false);
-      setFormData({ productName: "", productPrice: "", category: "" });
+      )
+      dispatch(toggleAddState({ ...state, isAddData: false }))
+      setFormData({ productName: '', productPrice: '', category: '' })
     } else {
-      alert("Please fill the form!");
+      alert('Please fill the form!')
     }
   }
 
   return (
     <form
-      action=""
+      action=''
       onSubmit={(e) => {
-        handleSubmit(e);
+        handleSubmit(e)
       }}
-      className={`${styles.add_form} ${showEdit ? styles.open : null}`}
+      className={`${styles.add_form} ${isAddData ? styles.open : null}`}
     >
       <div className={styles.inputs_container}>
         <input
-          type="text"
-          name="productName"
-          placeholder="Product name e.g Duffel bag"
+          type='text'
+          name='productName'
+          placeholder='Product name e.g Duffel bag'
           value={formData.productName}
           onChange={handleFormData}
         />
         <input
-          type="text"
-          name="productPrice"
-          placeholder="Product price e.g 13000"
+          type='text'
+          name='productPrice'
+          placeholder='Product price e.g 13000'
           value={formData.productPrice}
           onChange={handleFormData}
         />
 
         <input
-          type="text"
-          name="category"
-          placeholder="Category e.g Fashion"
+          type='text'
+          name='category'
+          placeholder='Category e.g Fashion'
           value={formData.category}
           onChange={handleFormData}
         />
       </div>
 
-      <button type="submit" className={styles.submit_add_btn}>
+      <button type='submit' className={styles.submit_add_btn}>
         Submit
       </button>
     </form>
-  );
+  )
 }
